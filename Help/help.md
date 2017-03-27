@@ -9,4 +9,4 @@
     https://www.jetbrains.com/pycharm/download/#section=windows
     
 ## Setting up PyCharm and cloning the repo from GitHub
-![Alt text](Help/Tirgul2-OpenCloneProject.gif?raw=true)
+![Alt text](Tirgul2-OpenCloneProject.gif?raw=true)
