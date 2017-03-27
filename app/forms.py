@@ -7,12 +7,15 @@ from app.models import User
 
 
 class LoginForm(Form):
-    # first_name = StringField('first_name', validators=[DataRequired()])
-    #last_name = StringField('Last_name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    first_name = StringField('first_name', validators=[DataRequired()])
+    last_name = StringField('last_name', validators=[DataRequired()])
+
     #first_name = StringField('First_name', validators=[DataRequired()])
-    def validate(self):
-        return True
-    # # def validate(self):
+    # def validate(self):
+    #     return True
+    #
+    # def validate(self):
     #     valid = Form.validate(self)
     #     if not valid:
     #         return False

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 
 from flask import render_template, flash, redirect, url_for, request, g
@@ -26,7 +28,7 @@ def index():
     if request.method == 'POST':
         validateAndAdd(request.form['party_name'])
         return redirect(url_for('login'))
-    g.user = current_user
+    g.user = current_user #global user parameter used by flask framwork
     parties = Party.query.all()
     return render_template('index.html',
                            title='Home',
@@ -38,17 +40,17 @@ def index():
 def login():
     error = None
     if request.method == 'POST':
-        form = LoginForm()
-        ##if form.validate_on_submit():
-        if request.form['first_name'] == "tomer":
-            first_name = request.form['first_name']
-            last_name = request.form['last_name']
+
+        ## Validate user
+        first_name = request.form['first_name']
+        if first_name == "tomer":
             user = User.query.filter_by(first_name=first_name).first()
             login_user(user)  ## built in 'flask login' method that creates a user session
-
             return redirect(url_for('index'))
-        else:
-            error = "This is an error"
+
+        else: ##validation error
+            error = u'המצביע אינו מופיע בבסיס הנתונים'
+
     return render_template('login.html',
                            error=error)
 
