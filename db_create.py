@@ -20,3 +20,4 @@ db.session.add(guest)
 db.session.commit()
 users = User.query.all()
 print users
+ דגשכ
