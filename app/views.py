@@ -36,9 +36,11 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
         form = LoginForm()
-        if form.validate_on_submit():
+        ##if form.validate_on_submit():
+        if request.form['first_name'] == "tomer":
             first_name = request.form['first_name']
             last_name = request.form['last_name']
             user = User.query.filter_by(first_name=first_name).first()
@@ -46,8 +48,9 @@ def login():
 
             return redirect(url_for('index'))
         else:
-            flash('Failed to log in.')
-    return render_template('login.html')
+            error = "This is an error"
+    return render_template('login.html',
+                           error=error)
 
 
 ## will handle the logout request
