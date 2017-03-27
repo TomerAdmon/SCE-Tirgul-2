@@ -15,12 +15,11 @@ def load_user(user_id):
 
 
 def validateAndAdd(party_name):
-    if (party_name == "AA"):
-        flash('AA indeed.')
+    ## implement me!
     pass
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -35,44 +34,39 @@ def index():
                            parties=parties)
 
 
-@app.route('/admin')
-@login_required
-def admin():
-    return render_template('a.html')
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
     if request.method == 'POST':
         form = LoginForm()
         if form.validate_on_submit():
             first_name = request.form['first_name']
             last_name = request.form['last_name']
             user = User.query.filter_by(first_name=first_name).first()
-            login_user(user)
-
-            flash('Logged in successfully.')
+            login_user(user)  ## built in 'flask login' method that creates a user session
 
             return redirect(url_for('index'))
         else:
             flash('Failed to log in.')
-    return render_template('login.html', error=error)
+    return render_template('login.html')
 
 
+## will handle the logout request
 @app.route('/logout')
 @login_required
 def logout():
-    logout_user()
+    logout_user() ## built in 'flask login' method that deletes the user session
     return redirect(url_for('index'))
 
 
+## secret page that shows the user name
 @app.route('/secret', methods=['GET'])
 @login_required
 def secret():
     return 'This is a secret page. You are logged in as {} {}'.format(current_user.first_name, current_user.last_name)
 
 
+## will handle the site icon - bonus 2 points for creative new icon
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')

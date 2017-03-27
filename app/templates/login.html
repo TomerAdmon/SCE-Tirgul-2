@@ -24,17 +24,6 @@
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}</p>
       {% endif %}
-    <div>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-            {% for message in messages %}
-                <li class="errors">{{ message }} </li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-      </div>
     </div>
   </body>
 </html>
