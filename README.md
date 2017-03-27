@@ -1,5 +1,8 @@
 # SCE-Tirgul-2
 
+## Prerequisites
+[Prerequisites help section](Help/help.md)
+
 ## Create database
 Executing this python file will create a new file called 'app.db' which is a SQLite db with some 
 ```cmd
