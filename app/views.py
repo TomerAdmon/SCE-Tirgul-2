@@ -29,7 +29,7 @@ def index():
         validateAndAdd(request.form['party_name'])
         return redirect(url_for('login'))
     g.user = current_user #global user parameter used by flask framwork
-    parties = Party.query.all()
+    parties = Party.query.all() #this is a demo comment
     return render_template('index.html',
                            title='Home',
                            user=g.user,
